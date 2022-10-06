@@ -1,20 +1,24 @@
-// let doctor: { fname: string, lname: string, salary: number, printInfo: Function } = {
-//   fname: "John",
-//   lname: "Doe",
-//   salary: 2000,
-//   printInfo: function () {
-//     return `${this.fname} ${this.lname}, with a salary of: ${this.salary}`;
-//   }
-// };
+/*let doctor: { fname: string, lname: string, age: number,salary:Number, jobTitle:string, jobLocation:string, printInfo: Function } = 
 
-// console.log(doctor.fname);
-
-// console.log(doctor.printInfo());
+   {
+  
+  fname: "Cornard",
+  lname: "Howkins",
+  age: 40,
+  salary: 7000,
+  jobTitle:"Doctor",
+  jobLocation:"at Chastain Park",
+  printInfo: function () {
+    return `I am${this.fname} ${this.lname}, and I am ${this.age} years old`;
+  }
+};
+*/
 
 interface DoctorType {
   fname: string;
   lname: string;
-  salary: number;
+  age: number;
+  jobTitle: string;
   printInfo?: Function;
 }
 
@@ -24,39 +28,45 @@ let arrDoctor: Array<DoctorType> = [];
 class HospitalEmployee {
   fname: string;
   lname: string;
-  salary: number;
+  age: number;
+  jobTitle: string;
 
-  constructor(fname: string, lname: string, salary: number) {
+  constructor(fname: string, lname: string, age: number, jobTitle: string) {
     this.fname = fname;
     this.lname = lname;
-    this.salary = salary;
+    this.age = age;
+    this.jobTitle = jobTitle;
 
     arrDoctor.push(this);
   }
 
   printInfo() {
-    return `${this.fname} ${this.lname}, with a salary of: ${this.salary}`;
+    return `My name is ${this.fname} ${this.lname}, with a age of: ${this.age}, and I am a ${this.jobTitle}`;
   }
 }
 
 class Doctor extends HospitalEmployee {
-  insurances: Array<string>;
 
-  constructor(fname: string, lname: string, salary: number, insurances: Array<string>) {
-    super(fname, lname, salary);
-    this.insurances = insurances;
+  salary: number;
+  jobLocation: string;
+  constructor(fname: string, lname: string, age: number, jobTitle: string, salary: number, jobLocation: string) {
+    super(fname, lname, age, jobTitle);
+    this.salary = salary;
+    this.jobLocation = jobLocation;
+
   }
 
-  printInfo() {
-    return `${super.printInfo()}, and he have ${this.insurances}`;
+  printInfoDoctor() {
+    return `${super.printInfo()}, and I get ${this.salary} every month, and I work in ${this.jobLocation}`
+
   }
 }
 
-let doctor = new Doctor("John", "Doe", 2000, ["AAA", "BBB"]);
-console.log(doctor.printInfo());
+
+let doctor = new Doctor("John", "Harrison", 34, "Doctor", 5000, "AKH.");
+let doctor2 = new Doctor("David", "Harrison", 34, "Doctor", 5000, "AKH.");
+
+console.log(doctor.printInfoDoctor());
+console.log(doctor2.printInfoDoctor());
 
 
-// let doctor: { fname: string, lname: string, salary: number, printInfo: Function } = new Doctor("John", "Doe", 2000);
-// let doctor2 : { fname: string, lname: string, salary: number, printInfo: Function } = new Doctor("test","test", 3000)
-
-// console.log(doctor.printInfo());
